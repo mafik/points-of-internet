@@ -1,0 +1,48 @@
+@import url(https://fonts.googleapis.com/css?family=Kite+One);
+
+
+html, body, #main {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+}
+#main {
+    color: #666;
+    font-family: "Kite One";
+    display: flex;
+    flex-direction: row;
+}
+#top {
+    flex: 1 0 auto;
+    text-decoration: none;
+    color: inherit;
+}
+#top, #minus, #plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#email {
+    flex: 0 0 auto;
+}
+#minus, #plus {
+    cursor: pointer;
+    box-sizing: border-box;
+    flex: 1 0 auto;
+    margin: 5px 5px 5px 0;
+    border-radius: 5px;
+    transition: background 300ms;
+    background: rgba(0,0,0,0.1);
+}
+#minus:hover {
+    background: #f88;
+}
+#plus:hover {
+    background: #aaf844;
+}
+.hide {
+    display: none !important;
+}
+.error {
+    color: #f00 !important;
+}

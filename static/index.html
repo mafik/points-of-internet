@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang=en>
+  <title>Points of Internet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel=author href=humans.txt />
+  <link rel=stylesheet href=/style.css>
+  <div id="explanation">
+    <h1>Points of Internet</h1>
+    <article>
+      <p style="font-size: 1.4em">They can be integrated into any website.<br>Their purpose is to reward heroes & punish trolls.<br>Think of them as online version of Santa's naughty or nice list.</p>
+      <p>Everybody starts at 0 and can use points to <span style="color:#83A36D">improve</span> or <span style="color:#994C4C">decrease</span> rating of others up to credit limit of -1000.<br>Every 50 days there is half as much of them as before. If anyone is below 0, he gains points.</p>
+    </article>
+  </div>
+
+  <div id=join_form>
+    <h2>Join</h2>
+    <p>Log-in using private link which you received in your first e-mail. See how it works using one of the test accounts: <a href="?1#bUpUJ2Cx0TIilBY5m3Xc">foo</a>, <a href="?2#HvnxNLRXF1cfmrAuJpSP">bar</a> or <a href="?3#tEztPDR3bLqZnIsK5Jrq">baz</a>.</p>
+    <input id="join_email" placeholder="E-mail"> <button id="join_send">Request link</button>
+    <p id=join_success class="success hide"></p>
+    <p class="error hide">There was an error (<span id="join_error"></span>). If it's my fault, let me know: <a href="mailto:bugs@pointsof.net">bugs@pointsof.net</a></p>
+  </div>
+
+  <div id=manage_form class=hide>
+    
+    <h2>Points of <span class="email">[email]</span>: <span id=integer>0</span>.<span id=fract>0</span></h2>
+    <div id="connection_error" class="error hide">There was an error: <span></span>.<br>If it's my fault, let me know: <a href="mailto:bugs@pointsof.net">bugs@pointsof.net</a></div>
+
+    <div class=order>
+      <table>
+        <tr>
+          <td class=label>Destination</td>
+          <td><input id="destination" placeholder="Email"><div id="destination_invalid" class="error hide">Invalid email</div><div id="destination_equal" class="error hide">Destination can't be same as source</div></td>
+        </tr>
+        <tr>
+          <td class=label>Amount</td>
+          <td><input id="amount" value="1.00"><div id="amount_nan" class="error hide">Amount must be a number</div><div id="amount_small" class="error hide">Amount must be at least 0.1</div></td>
+        </tr>
+        <tr>
+          <td class=label>Comment</td>
+          <td><textarea id="comment"></textarea><div id="comment_long" class="error hide">Comment can't be longer than 140 characters</div></td>
+        </tr>
+      </table>
+      <div class=action>
+        <button id="punish">Punish</button><button id="send">Send</button>
+      </div>
+      <div id="server_error" class="error hide"></div>
+    </div><br>
+
+    <div class="notification">
+    Email notification treshold: <input id="treshold" value="0.1" size=5><button id="save_treshold" class="inactive">Save</button>
+      <div id="treshold_nan" class="error hide">Notification treshold must be a number</div>
+    </div><div class=log_out>
+      <button id="log_out">Log out</button>
+    </div>
+    <br>
+
+    <table class=history>
+      <thead>
+        <th>Date</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Amount</th>
+        <th>Comment</th>
+      </thead>
+      <tbody id="history"></tbody>
+    </table>
+
+  </div>
+
+  <h2>Embed & Extend</h2>
+  <p>Points of Internet are <a href="https://github.com/mafik/points-of-internet">open source</a>! You can embed widget on your website... :</p>
+
+  <iframe style="float: right; background: #fff; border: 1px solid #ddd" frameborder=0 width=350 height=46
+          src="https://pointsof.net/iframe/#foo@pointsof.net"></iframe>
+  <pre><code>&lt;iframe frameborder=0 width=350 height=40
+  src="https://pointsof.net/iframe/#<span class="email meta">[email]</span>"&gt;&lt;/iframe&gt;
+  </code></pre>
+
+
+  <p>... use JavaScript:</p>
+  <pre><code>&lt;script src=https://pointsof.net/api.js&gt;&lt;/script&gt;
+&lt;script&gt;
+  PI.get_balance("<span class="email meta">[email]</span>", function(err, balance) {
+    console.log(balance);
+  });
+&lt;/script&gt;
+  </code></pre>
+
+  <p>... or simply a link:</p>
+  <pre><code>&lt;a href="https://pointsof.net/#<span class="email meta">[email]</span>:5"&gt;
+  Click here to send me 5 PI.&lt;/a&gt;
+  </code></pre>
+
+  <p>Also, check out <a href="/db/">pointsof.net/db/</a> for daily database snapshots.</p>
+
+  <h2>Who am I & why I'm doing this?</h2>
+
+  <p>I'm <a href="https://mrogalski.eu">Marek Rogalski</a> and I think that a decent reputation system is the best way to combat paid comments & reviews on the internet. It could let honest people stay anonymous while retaining trust of others. <a href="http://en.wikipedia.org/wiki/Linus's_Law">Full transparency</a> should make it resilient to malicious hacking and provide solid base for others to build upon.</p>
+
+  <p>Only known way to provide such reputation system in a distributed (and potentially hostile) environment such as the internet is through public & trusted database. There was no such thing, so I built one. I'm devoting a lot of my free time to maintain it (including resources of my home server) so if you can, please help me by donating some money:</p>
+
+  <img id="support_google" src=/Payment_mark_Light_180x113.png>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display: inline">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+           ">
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="background: linear-gradient(to top, #f7f7f7, #fff); padding: 32px 16px; border-radius: 4px; border: 1px solid #ddd; box-shadow: none;">
+    <img alt="" border="0" src="https://www.paypalobjects.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
+  </form>
+
+
+  <script src=https://checkout.google.com/inapp/lib/buy.js></script>
+  <script src=moment.min.js></script>
+  <script src=script.js></script>

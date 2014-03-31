@@ -1,0 +1,17 @@
+/* TEAM */
+        Developer: Marek Rogalski
+        Website: https://mrogalski.eu
+        Contact: mafikpl@gmail.com
+        Twitter: @mafikpl
+        From: Łódź, Poland
+
+/* THANKS */
+
+        Contributor: https://github.com/krzys-h/
+        Website: http://krzysh.pl
+
+/* SITE */
+        Last update: 31 march 2014
+        Language: English
+        Doctype: HTML5
+        IDE: Emacs
