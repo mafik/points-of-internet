@@ -1,4 +1,7 @@
-
 #!/bin/bash
 
-sqlite3 $HOME/node/current.db <<< ".dump" | sqlite3 $HOME/static/db/`date +"%Y-%m-%d"`.sqlite
+CURRENT=$HOME/node/current.db
+SNAPSHOT=$HOME/static/db/`date +"%Y-%m-%d"`.sqlite
+
+sqlite3 $CURRENT <<< ".dump" | sqlite3 $SNAPSHOT
+gzip $SNAPSHOT
